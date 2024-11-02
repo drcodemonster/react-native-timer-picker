@@ -335,6 +335,9 @@ return (
             hourLabel=":"
             minuteLabel=":"
             secondLabel=""
+            numberOfHours={24}
+            numberOfMinutes={15}
+            numberOfSeconds={6}
             Audio={Audio}
             LinearGradient={LinearGradient}
             Haptics={Haptics}
@@ -394,6 +397,9 @@ return (
             Audio={Audio}
             LinearGradient={LinearGradient}
             Haptics={Haptics}
+            numberOfHours={24}
+            numberOfMinutes={15}
+            numberOfSeconds={6}
             styles={{
                 theme: "light",
                 pickerItem: {

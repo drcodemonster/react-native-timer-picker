@@ -244,6 +244,9 @@ export default function App() {
                     hideHours
                     LinearGradient={LinearGradient}
                     minuteLabel="min"
+                    numberOfHours={24}
+                    numberOfMinutes={15}
+                    numberOfSeconds={6}
                     padWithNItems={3}
                     secondLabel="sec"
                     styles={{

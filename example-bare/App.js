@@ -177,6 +177,9 @@ export default function App() {
                     minuteLabel="min"
                     padWithNItems={3}
                     secondLabel="sec"
+                    numberOfHours={24}
+                    numberOfMinutes={15}
+                    numberOfSeconds={6}
                     styles={{
                         theme: "light",
                         pickerItem: {

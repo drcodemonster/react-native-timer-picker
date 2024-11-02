@@ -11,7 +11,6 @@
     "module": "dist/module/index.js",
     "types": "dist/typescript/index.d.ts",
     "typings": "dist/typescript/index.d.ts",
-
     "scripts": {
         "setup": "yarn && cd example && yarn",
         "setup-bare": "yarn && cd example-bare && yarn",
@@ -140,5 +139,6 @@
     "eslintIgnore": [
         "node_modules/",
         "dist/"
-    ]
+    ],
+    "packageManager": "yarn@1.22.22"
 }
