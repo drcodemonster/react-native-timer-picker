@@ -139,6 +139,5 @@
     "eslintIgnore": [
         "node_modules/",
         "dist/"
-    ],
-    "packageManager": "yarn@1.22.22"
+    ]
 }
