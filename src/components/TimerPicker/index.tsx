@@ -29,12 +29,12 @@ const TimerPicker = forwardRef<TimerPickerRef, TimerPickerProps>(
             hourLimit,
             hoursPickerIsDisabled = false,
             initialValue,
+            intervalHours = 1,
+            intervalMinutes = 1,
+            intervalSeconds = 1,
             minuteLabel,
             minuteLimit,
             minutesPickerIsDisabled = false,
-            numberOfHours = 24,
-            numberOfMinutes = 60,
-            numberOfSeconds=60,
             onDurationChange,
             padHoursWithZero = false,
             padMinutesWithZero = true,
@@ -153,13 +153,14 @@ const TimerPicker = forwardRef<TimerPickerRef, TimerPickerProps>(
                         amLabel={amLabel}
                         disableInfiniteScroll={disableInfiniteScroll}
                         initialValue={safeInitialValue.hours}
+                        intervalItems={intervalHours}
                         is12HourPicker={use12HourPicker}
                         isDisabled={hoursPickerIsDisabled}
                         label={
                             hourLabel ?? (!use12HourPicker ? "h" : undefined)
                         }
                         limit={hourLimit}
-                        numberOfItems={numberOfHours}
+                        numberOfItems={24}
                         onDurationChange={setSelectedHours}
                         padNumbersWithZero={padHoursWithZero}
                         padWithNItems={safePadWithNItems}
@@ -179,10 +180,11 @@ const TimerPicker = forwardRef<TimerPickerRef, TimerPickerProps>(
                         allowFontScaling={allowFontScaling}
                         disableInfiniteScroll={disableInfiniteScroll}
                         initialValue={safeInitialValue.minutes}
+                        intervalItems={intervalMinutes}
                         isDisabled={minutesPickerIsDisabled}
                         label={minuteLabel ?? "m"}
                         limit={minuteLimit}
-                        numberOfItems={numberOfMinutes}
+                        numberOfItems={60}
                         onDurationChange={setSelectedMinutes}
                         padNumbersWithZero={padMinutesWithZero}
                         padWithNItems={safePadWithNItems}
@@ -201,10 +203,11 @@ const TimerPicker = forwardRef<TimerPickerRef, TimerPickerProps>(
                         allowFontScaling={allowFontScaling}
                         disableInfiniteScroll={disableInfiniteScroll}
                         initialValue={safeInitialValue.seconds}
+                        intervalItems={intervalSeconds}
                         isDisabled={secondsPickerIsDisabled}
                         label={secondLabel ?? "s"}
                         limit={secondLimit}
-                        numberOfItems={numberOfSeconds}
+                        numberOfItems={60}
                         onDurationChange={setSelectedSeconds}
                         padNumbersWithZero={padSecondsWithZero}
                         padWithNItems={safePadWithNItems}

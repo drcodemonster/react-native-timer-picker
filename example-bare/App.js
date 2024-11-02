@@ -145,6 +145,9 @@ export default function App() {
                     initialHours={0}
                     initialMinutes={0}
                     initialSeconds={0}
+                    intervalHours={1}
+                    intervalMinutes={15}
+                    intervalSeconds={10}
                     LinearGradient={LinearGradient}
                     minuteLabel="min"
                     styles={{
@@ -177,9 +180,9 @@ export default function App() {
                     minuteLabel="min"
                     padWithNItems={3}
                     secondLabel="sec"
-                    numberOfHours={24}
-                    numberOfMinutes={15}
-                    numberOfSeconds={6}
+                    intervalHours={1}
+                    intervalMinutes={15}
+                    intervalSeconds={10}
                     styles={{
                         theme: "light",
                         pickerItem: {

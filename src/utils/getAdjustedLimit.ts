@@ -2,7 +2,7 @@ import type { LimitType } from "../components/DurationScroll/types";
 
 export const getAdjustedLimit = (
     limit: LimitType | undefined,
-    numberOfItems: number
+    numberOfItems: number,
 ): {
     max: number;
     min: number;

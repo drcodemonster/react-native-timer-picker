@@ -242,11 +242,11 @@ export default function App() {
                     Audio={Audio}
                     Haptics={Haptics}
                     hideHours
+                    intervalHours={1}
+                    intervalMinutes={15}
+                    intervalSeconds={20}
                     LinearGradient={LinearGradient}
                     minuteLabel="min"
-                    numberOfHours={24}
-                    numberOfMinutes={15}
-                    numberOfSeconds={6}
                     padWithNItems={3}
                     secondLabel="sec"
                     styles={{

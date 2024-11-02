@@ -1,5 +1,6 @@
 export const getInitialScrollIndex = (variables: {
     disableInfiniteScroll: boolean;
+    intervalItems: number;
     numberOfItems: number;
     padWithNItems: number;
     repeatNumbersNTimes: number;
@@ -7,15 +8,16 @@ export const getInitialScrollIndex = (variables: {
 }) => {
     const {
         disableInfiniteScroll,
+        intervalItems,
         numberOfItems,
         padWithNItems,
         repeatNumbersNTimes,
         value,
     } = variables;
-
+    const numberOfItemsWithIntervals = Math.ceil(numberOfItems / intervalItems);
     return Math.max(
-        numberOfItems * Math.floor(repeatNumbersNTimes / 2) +
-            ((value + numberOfItems) % numberOfItems) -
+        numberOfItemsWithIntervals * Math.floor(repeatNumbersNTimes / 2) +
+            ((value + numberOfItemsWithIntervals) % numberOfItemsWithIntervals) -
             (!disableInfiniteScroll ? padWithNItems : 0),
         0
     );

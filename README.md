@@ -335,9 +335,9 @@ return (
             hourLabel=":"
             minuteLabel=":"
             secondLabel=""
-            numberOfHours={24}
-            numberOfMinutes={15}
-            numberOfSeconds={6}
+            intervalHours={1}
+            intervalMinutes={15}
+            intervalSeconds={10}
             Audio={Audio}
             LinearGradient={LinearGradient}
             Haptics={Haptics}
@@ -397,9 +397,9 @@ return (
             Audio={Audio}
             LinearGradient={LinearGradient}
             Haptics={Haptics}
-            numberOfHours={24}
-            numberOfMinutes={15}
-            numberOfSeconds={6}
+            intervalHours={1}
+            intervalMinutes={15}
+            intervalSeconds={10}
             styles={{
                 theme: "light",
                 pickerItem: {
@@ -443,6 +443,9 @@ return (
 |            hourLimit             | Limit on the hours it is possible to select                                     |                                                                                `{ max?: Number, min?: Number }`                                                                                 |    -    |  false   |
 |           minuteLimit            | Limit on the minutes it is possible to select                                   |                                                                                `{ max?: Number, min?: Number }`                                                                                 |    -    |  false   |
 |           secondLimit            | Limit on the seconds it is possible to select                                   |                                                                                `{ max?: Number, min?: Number }`                                                                                 |    -    |  false   |
+|            intervalHours             | Interval on the hours. e.g. if given 2 then listed as 0,2,4,6..                                     |                                                                                Number                                                                                 |    1    |  false   |
+|            intervalMinutes             | Interval on the minutes. e.g. if given 15 then listed as 0,15,30,45..                                     |                                                                                Number                                                                                 |    1    |  false   |
+|            intervalSeconds             | Interval on the seconds.e.g. if given 10 then listed as 0,10,10,30..                                     |                                                                                Number                                                                                 |    1    |  false   |
 |            hourLabel             | Label for the hours picker                                                      |                                                                                  String \| React.ReactElement                                                                                   |    h    |  false   |
 |           minuteLabel            | Label for the minutes picker                                                    |                                                                                  String \| React.ReactElement                                                                                   |    m    |  false   |
 |           secondLabel            | Label for the seconds picker                                                    |                                                                                  String \| React.ReactElement                                                                                   |    s    |  false   |

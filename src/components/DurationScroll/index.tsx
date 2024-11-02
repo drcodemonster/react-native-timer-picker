@@ -40,6 +40,7 @@ const DurationScroll = forwardRef<DurationScrollRef, DurationScrollProps>(
             FlatList = RNFlatList,
             Haptics,
             initialValue = 0,
+            intervalItems = 1,
             is12HourPicker,
             isDisabled,
             label,
@@ -63,13 +64,17 @@ const DurationScroll = forwardRef<DurationScrollRef, DurationScrollProps>(
             } else if (repeatNumbersNTimes < 1) {
                 return 1;
             }
+            if (intervalItems > 1) {
+                return 5;
+            }
 
             return Math.round(repeatNumbersNTimes);
-        }, [disableInfiniteScroll, repeatNumbersNTimes]);
+        }, [disableInfiniteScroll, repeatNumbersNTimes, intervalItems]);
 
         const numbersForFlatList = useMemo(() => {
             if (is12HourPicker) {
                 return generate12HourNumbers({
+                    intervalItems,
                     padNumbersWithZero,
                     repeatNTimes: safeRepeatNumbersNTimes,
                     disableInfiniteScroll,
@@ -78,6 +83,7 @@ const DurationScroll = forwardRef<DurationScrollRef, DurationScrollProps>(
             }
 
             return generateNumbers(numberOfItems, {
+                intervalItems,
                 padNumbersWithZero,
                 repeatNTimes: safeRepeatNumbersNTimes,
                 disableInfiniteScroll,
@@ -87,6 +93,7 @@ const DurationScroll = forwardRef<DurationScrollRef, DurationScrollProps>(
             disableInfiniteScroll,
             is12HourPicker,
             numberOfItems,
+            intervalItems,
             padNumbersWithZero,
             padWithNItems,
             safeRepeatNumbersNTimes,
@@ -97,6 +104,7 @@ const DurationScroll = forwardRef<DurationScrollRef, DurationScrollProps>(
                 getInitialScrollIndex({
                     disableInfiniteScroll,
                     numberOfItems,
+                    intervalItems,
                     padWithNItems,
                     repeatNumbersNTimes: safeRepeatNumbersNTimes,
                     value: initialValue,
@@ -105,6 +113,7 @@ const DurationScroll = forwardRef<DurationScrollRef, DurationScrollProps>(
                 disableInfiniteScroll,
                 initialValue,
                 numberOfItems,
+                intervalItems,
                 padWithNItems,
                 safeRepeatNumbersNTimes,
             ]
@@ -230,6 +239,7 @@ const DurationScroll = forwardRef<DurationScrollRef, DurationScrollProps>(
                         disableInfiniteScroll,
                         itemHeight: styles.pickerItemContainer.height,
                         numberOfItems,
+                        intervalItems,
                         padWithNItems,
                         yContentOffset: e.nativeEvent.contentOffset.y,
                     });
@@ -283,6 +293,7 @@ const DurationScroll = forwardRef<DurationScrollRef, DurationScrollProps>(
                 clickSound,
                 disableInfiniteScroll,
                 numberOfItems,
+                intervalItems,
                 padWithNItems,
                 styles.pickerItemContainer.height,
             ]
@@ -294,6 +305,7 @@ const DurationScroll = forwardRef<DurationScrollRef, DurationScrollProps>(
                     disableInfiniteScroll,
                     itemHeight: styles.pickerItemContainer.height,
                     numberOfItems,
+                    intervalItems,
                     padWithNItems,
                     yContentOffset: e.nativeEvent.contentOffset.y,
                 });
@@ -335,6 +347,7 @@ const DurationScroll = forwardRef<DurationScrollRef, DurationScrollProps>(
                 numbersForFlatList.length,
                 disableInfiniteScroll,
                 numberOfItems,
+                intervalItems,
                 onDurationChange,
                 padWithNItems,
                 styles.pickerItemContainer.height,
@@ -343,26 +356,27 @@ const DurationScroll = forwardRef<DurationScrollRef, DurationScrollProps>(
 
         const onViewableItemsChanged = useCallback(
             ({ viewableItems }: { viewableItems: ViewToken[] }) => {
+                const numberOfItemsWithIntervals = Math.ceil(numberOfItems / intervalItems);
                 if (
                     viewableItems[0]?.index &&
-                    viewableItems[0].index < numberOfItems * 0.5
+                    viewableItems[0].index < numberOfItemsWithIntervals * 0.5
                 ) {
                     flatListRef.current?.scrollToIndex({
                         animated: false,
-                        index: viewableItems[0].index + numberOfItems,
+                        index: viewableItems[0].index + numberOfItemsWithIntervals,
                     });
                 } else if (
                     viewableItems[0]?.index &&
                     viewableItems[0].index >=
-                        numberOfItems * (safeRepeatNumbersNTimes - 0.5)
+                    numberOfItemsWithIntervals * (safeRepeatNumbersNTimes - 0.5)
                 ) {
                     flatListRef.current?.scrollToIndex({
                         animated: false,
-                        index: viewableItems[0].index - numberOfItems,
+                        index: viewableItems[0].index - numberOfItemsWithIntervals,
                     });
                 }
             },
-            [numberOfItems, safeRepeatNumbersNTimes]
+            [numberOfItems,intervalItems,safeRepeatNumbersNTimes]
         );
 
         const getItemLayout = useCallback(
@@ -395,6 +409,7 @@ const DurationScroll = forwardRef<DurationScrollRef, DurationScrollProps>(
                     index: getInitialScrollIndex({
                         disableInfiniteScroll,
                         numberOfItems,
+                        intervalItems,
                         padWithNItems,
                         repeatNumbersNTimes: safeRepeatNumbersNTimes,
                         value: value,
